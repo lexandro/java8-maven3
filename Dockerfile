@@ -2,8 +2,15 @@ FROM lexandro/java8-base
 
 MAINTAINER Robert Stern <lexandro2000@<you know that big search company>.com
 
-ADD apache-maven-3.3.1 /apache-maven-3.3.1
+COPY apache-maven-3.3.3-bin.tar.gz /
 
-ENV M2_HOME apache-maven-3.3.1
+RUN  tar xvf /apache-maven-3.3.3-bin.tar.gz -C /
+
+ENV M2_HOME /apache-maven-3.3.3
 
 ENV PATH $M2_HOME/bin:$PATH
+
+WORKDIR /app
+
+ENTRYPOINT ["mvn"]
+
